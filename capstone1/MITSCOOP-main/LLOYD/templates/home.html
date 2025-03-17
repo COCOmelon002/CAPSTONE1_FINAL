@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: skyblue;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        nav {
+            width: 280px;
+            background: white;
+            height: 100vh;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            color: black;
+            padding: 15px 20px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #34495E;
+            color: black;
+        }
+
+        nav .logo {
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+        }
+
+        nav img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        nav .fas {
+            margin-right: 10px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container1 {
+            margin-left: 280px;
+            padding: 40px;
+            background-color: skyblue;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .container1 h1 {
+            font-size: 28px;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;  
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            padding: 80px;
+            width: 700px;   
+            height: 350px;  
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 50px; 
+            color: skyblue;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 24px; 
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 18px;  
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+
+        .card-btn {
+            background:blue;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background: skyblue;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/image.png') }}" alt=""><br>
+                <br>
+                <span>Employee Dashboard</span>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('profile') }}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a></li>
+
+                <li><a href="{{ url_for('report') }}">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Report
+                </a></li>
+
+                <li><a href="performance.html">
+                    <i class="fas fa-bar-chart"></i>
+                    View Records
+                </a></li>
+
+                <li><a href="help.html">
+                    <i class="fas fa-question-circle"></i>
+                    Help
+                </a></li>
+
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="container1">
+            <h1>My Performance Dashboard</h1>
+
+            <div class="cards-container">
+               
+                <div class="card">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Attendance</h2><br>
+                    <button class="card-btn">View Attendance</button>
+                </div>
+
+               
+                <div class="card">
+                    <i class="fas fa-tasks"></i>
+                    <h2>Created Report</h2><br>
+                   
+                    <button class="card-btn">View Reports</button>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

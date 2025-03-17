@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: skyblue;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav {
+            width: 280px;
+            background: white;
+            height: 100vh;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            left: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            color: black;
+            padding: 15px 20px;
+            font-size: 20px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #34495E;
+            color: #1abc9c;
+        }
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 5px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-bottom: 15px;
+        }
+
+        nav .fas {
+            margin-right: 10px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container1 {
+            margin-left: 280px;
+            padding: 20px;
+            background-color: rgb(146, 163, 166);
+            width: 100%;
+            max-width: 1200px;
+            min-width: 400px;
+            border-radius: 60px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #2C3E50;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            resize: vertical; 
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: rgb(85, 85, 228) ;
+            box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+            outline: none;
+        }
+
+        textarea::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        button {
+            background-color: blue;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(20, 201, 20);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/image.png') }}" alt="">
+                <span>Employee Dashboard</span>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('profile') }}">
+                    <i class="fas fa-user"></i> Profile
+                </a></li>
+                <li><a href="{{ url_for('report') }}">
+                    <i class="fas fa-paper-plane"></i> Send Report
+                </a></li>
+                <li><a href="performance.html">
+                    <i class="fas fa-bar-chart"></i> View Records
+                </a></li>
+                <li><a href="help.html">
+                    <i class="fas fa-question-circle"></i> Help
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="container1">
+            <form action="{{ url_for('report') }}" method="POST" enctype="multipart/form-data">
+                <h2>WRITE A REPORT</h2>
+                <textarea name="message" placeholder="Enter your report here ..." data-maxlength="255" rows="10"></textarea>
+                <br>
+
+                <h2>SEND A REPORT THROUGH IMAGE</h2>
+                <input name="image" type="file"><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

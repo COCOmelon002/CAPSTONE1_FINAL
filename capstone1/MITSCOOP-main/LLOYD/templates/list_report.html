@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>My Report List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: skyblue;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .scroll-container {
+            max-height: 200px;
+            overflow-y: auto; 
+            border: 1px solid #ddd;
+            padding-right: 5px; 
+        }
+        .report-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .report-list li {
+            background: #007bff;
+            color: white;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .report-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .report-list a:hover {
+            text-decoration: underline;
+        }
+
+        .return {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .return:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Created Reports</h2>
+        <div class="scroll-container">
+            <ul class="report-list">
+                <li><span>Report 1</span> <a href="#">View</a></li>
+                <li><span>Report 2</span> <a href="#">View</a></li>
+                <li><span>Report 3</span> <a href="#">View</a></li>
+                <li><span>Report 4</span> <a href="#">View</a></li>
+                <li><span>Report 5</span> <a href="#">View</a></li>
+                <li><span>Report 6</span> <a href="#">View</a></li>
+                <li><span>Report 7</span> <a href="#">View</a></li>
+                <li><span>Report 8</span> <a href="#">View</a></li>
+            </ul>
+        </div>
+        <a href="#" class="return">
+            <i class="fas fa-sign-out-alt"></i> 
+            <span class="nav-item">Back</span>
+        </a>    
+    </div>
+</body>
+</html>

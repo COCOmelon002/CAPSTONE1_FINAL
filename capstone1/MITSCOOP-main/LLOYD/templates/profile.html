@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: skyblue;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;  /* i-center ang tanan nga text  */
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav {
+            width: 280px;
+            background: white;
+            height: 100vh;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            left: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            color: black;
+            padding: 15px 20px;
+            font-size: 20px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #34495E;
+            color: #1abc9c;
+        }
+
+        nav .logo {
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        nav .fas {
+            margin-right: 10px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container1 {
+            margin-left: 280px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            width: 100%;
+            max-width: 1200px;
+            min-width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            border-radius: 8px;
+        }
+
+        .container1 h2 {
+            font-size: 28px;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .profile-section, .settings-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .profile-section h3, .settings-section h3 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .profile-details p {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .profile-details strong {
+            color: black;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .settings_button, .logout_button {
+            background: #1abc9c;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s ease;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .settings_button:hover, .logout_button:hover {
+            background: #16a085;
+        }
+
+        .settings_button:focus, .logout_button:focus {
+            outline: none;
+        }
+
+       
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .container1 {
+                padding: 20px;
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/image.png') }}" alt="">
+                <span>Employee Dashboard</span>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('profile') }}">
+                    <i class="fas fa-user"></i> Profile
+                </a></li>
+                <li><a href="{{ url_for('report') }}">
+                    <i class="fas fa-paper-plane"></i> Send Report
+                </a></li>
+                <li><a href="performance.html">
+                    <i class="fas fa-bar-chart"></i> View Records
+                </a></li>
+                <li><a href="help.html">
+                    <i class="fas fa-question-circle"></i> Help
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="container1">
+            <h2>Welcome, <span >{{name}}</span>!</h2>
+            <div class="profile-info">
+                <div class="profile-details">
+                    <p><strong>Name :</strong> <span id="name">{{ name }}</span></p>
+
+                    <p><strong>Age :</strong> <span id="age">{{ age }}</span></p>
+
+                    <p><strong>Address :</strong> <span id="address">{{ address }}</span></p>
+
+                    <p><strong>Gender :</strong> <span id="gender">{{ gender }}</span></p>
+
+                    <p><strong>Marital Status:</strong> <span id="status">{{ status }}</span></p>
+
+                    <p><strong>Contact Number:</strong> <span id="contact">{{ contact }}</span></p>
+
+                    <p><strong>Work Position:</strong> <span id="position">{{ position }}</span></p>
+
+                    <p><strong>Email:</strong> <span id="email">{{ email }}</span></p>
+                    
+                    <button id="edit_profile" class="settings_button">Edit Profile</button>
+                    <button id="logout" class="logout_button">Return</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            background: skyblue;
+        }
+        .container {
+            display: flex;
+        }
+        nav {
+            height: 100vh;
+            background: #fff;
+            width: 280px;
+            box-shadow: 0 28px 35px rgba(0, 0, 0, 0.1);
+            padding-top: 10px;
+        }
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px;
+        }
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        a {
+            color: rgba(85, 83, 83);
+            font-size: 16px;
+            display: table;
+            width: 280px;
+            padding: 20px;
+        }
+        nav .fas {
+            width: 60px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .nav-item {
+            margin-left: 20px;
+        }
+        a:hover {
+            background: #eee;
+        }
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* Dashboard Content */
+        .content {
+            width: 75%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Report Chart Styling */
+        .container1 {
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .progress-container {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .progress-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 20px;
+            text-align: right;
+            padding-right: 10px;
+            line-height: 20px;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+        .blue { background-color: #007bff; width: 70%; }
+        .green { background-color: #28a745; width: 50%; }
+        .orange { background-color: #ff9800; width: 30%; }
+
+        /* Table Styling */
+        .table-container {
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .report-table th {
+            background: #007bff;
+            color: white;
+        }
+        .report-table tbody tr:hover {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='img/image.png') }}" alt="">
+                    <span class="nav-item">Admin Dashboard</span>
+                </a></li>
+                <li><a href="admin_profile.html">
+                    <i class="fas fa-user"></i> 
+                    <span class="nav-item">Profile</span>
+                </a></li>
+                <li><a href="{{ url_for('check') }}">
+                    <i class="fas fa-paper-plane"></i> 
+                    <span class="nav-item">Check Reports</span>
+                </a></li>
+                <li><a href="admin_monitor_perf.html">
+                    <i class="fas fa-bar-chart"></i> 
+                    <span class="nav-item">Monitor Performance</span>
+                </a></li>
+                <li><a href="" class="logout">
+                    <i class="fas fa-sign-out-alt"></i> 
+                    <span class="nav-item">Logout</span>
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Report Chart Section -->
+            <div class="container1">
+                <h2>Report Charts</h2>
+
+                <div class="progress-container">
+                    <div class="progress-label">Submitted Reports</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill blue">70%</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">Late Reports</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill green">50%</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">No Reports</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill orange">30%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee Report Table Section -->
+            <div class="table-container">
+                <h2>Employee Report Details</h2>
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Submitted Reports</th>
+                            <th>Late Reports</th>
+                            <th>No Reports</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>15</td>
+                            <td>5</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>12</td>
+                            <td>8</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Mark Johnson</td>
+                            <td>18</td>
+                            <td>3</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Emily Davis</td>
+                            <td>10</td>
+                            <td>6</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
